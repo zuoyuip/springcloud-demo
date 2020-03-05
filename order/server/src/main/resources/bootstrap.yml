@@ -16,3 +16,28 @@ spring:
 #  client:
 #    service-url:
 #      defaultZone: http://localhost:8762/eureka/
+
+#  断路器配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+#            单独方法配置
+    getProductInfoList:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+#开启Feign的熔断
+feign:
+  hystrix:
+    enabled: true
+
+management:
+  endpoint:
+    hystrix:
+      config:

@@ -10,7 +10,9 @@ import com.imooc.product.dataobject.ProductInfo;
 import com.imooc.product.service.CategoryService;
 import com.imooc.product.service.ProductService;
 import com.imooc.product.utils.*;
+import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpServletRequest;
+import lombok.SneakyThrows;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -80,8 +82,10 @@ public class ProductController {
      * @param productIdList
      * @return
      */
+    @SneakyThrows
     @PostMapping("/listForOrder")
     public List<ProductInfoOutput> listForOrder(@RequestBody List<String> productIdList) {
+        TimeUnit.SECONDS.sleep(2L);
         return productService.findList(productIdList);
     }
 
